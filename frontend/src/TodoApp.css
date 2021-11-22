@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+#text-field{
+  display: inline;
+}
+
+#create-button{
+  display: inline-block;
+  padding-top: 10px;
+  padding-left: 5%;
+}
+
+#todoValue{
+  display: block;
+}
+#buttons{
+  margin-left: 85%;
+  margin-top: -25px;
+}

@@ -1,0 +1,39 @@
+version: "3.3"
+services:
+  # Frontend Service
+  frontend:
+    build:
+      context: "./frontend"
+      dockerfile: "./Dockerfile"
+    ports:
+      - '3000:3000'
+    container_name : "frontend"
+    environment:
+      - "REACT_APP_HOST_IP_ADDRESS=localhost"
+      - "REACT_APP_HOST_PORT=8080"
+    depends_on:
+      - backend
+  # Backend Service
+  backend:
+    build:
+      context: "./backend"
+      dockerfile: "./Dockerfile"
+    ports:
+      - '8080:8080'
+    container_name : "backend"
+    depends_on:
+      - mongodb
+    environment:
+      - "spring.data.mongodb.host=mongodb"
+  # Database Service
+  mongodb:
+    image: mongo:4.0.4
+    container_name: mongodb
+    command: mongod
+    ports:
+      - 27017:27017
+    volumes:
+      - agivol:/data/db
+  # Persistant volume
+volumes:
+  agivol:
